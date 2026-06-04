@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Learn SOC With Me Lab 05: OAuth consent phishing and cloud data exfiltration investigation with synthetic Microsoft 365-style logs.">
+  <title>Learn SOC With Me - Lab 05</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <header class="topbar">
+    <div>
+      <p class="eyebrow">Learn SOC With Me</p>
+      <h1>Lab 05 - OAuth Consent Cloud Exfiltration</h1>
+    </div>
+    <div class="topbar-actions">
+      <span class="status-pill">Synthetic Data</span>
+      <a href="reports/report-template.md" target="_blank" rel="noreferrer">Report Template</a>
+      <a href="detections/sigma/suspicious_oauth_consent_high_risk_scopes.yml" target="_blank" rel="noreferrer">Sigma Rule</a>
+    </div>
+  </header>
+
+  <main class="workspace">
+    <aside class="alert-queue" aria-label="Alert queue">
+      <div class="panel-heading">
+        <p class="eyebrow">Queue</p>
+        <h2>Alerts</h2>
+      </div>
+      <div id="alertQueue" class="queue-list"></div>
+    </aside>
+
+    <section class="investigation" aria-label="Investigation workspace">
+      <div id="caseHeader" class="case-header"></div>
+
+      <section class="summary-grid" aria-label="Case summary">
+        <article>
+          <span>Affected User</span>
+          <strong id="affectedUser">Loading</strong>
+        </article>
+        <article>
+          <span>Suspicious App</span>
+          <strong id="suspiciousApp">Loading</strong>
+        </article>
+        <article>
+          <span>Data Scope</span>
+          <strong id="dataScope">Loading</strong>
+        </article>
+        <article>
+          <span>MITRE</span>
+          <strong id="mitreSummary">Loading</strong>
+        </article>
+      </section>
+
+      <nav class="tabs" aria-label="Investigation tabs">
+        <button class="tab active" data-tab="timeline">Timeline</button>
+        <button class="tab" data-tab="oauth">OAuth</button>
+        <button class="tab" data-tab="cloud">Cloud Files</button>
+        <button class="tab" data-tab="logs">Logs</button>
+        <button class="tab" data-tab="entities">Entities</button>
+        <button class="tab" data-tab="detections">Detections</button>
+      </nav>
+
+      <section id="timelinePanel" class="tab-panel active" aria-label="Timeline">
+        <div class="section-title">
+          <h2>Event Timeline</h2>
+          <p>Follow the chain from phishing email to OAuth consent, token abuse, file access, external sharing, and persistence.</p>
+        </div>
+        <div id="timeline" class="timeline"></div>
+      </section>
+
+      <section id="oauthPanel" class="tab-panel" aria-label="OAuth evidence">
+        <div class="section-title">
+          <h2>OAuth Evidence</h2>
+          <p>Review the app, consent grant, high-risk scopes, and service principal credential change.</p>
+        </div>
+        <div id="oauthEvidence" class="entity-grid"></div>
+      </section>
+
+      <section id="cloudPanel" class="tab-panel" aria-label="Cloud file evidence">
+        <div class="section-title">
+          <h2>Cloud File Evidence</h2>
+          <p>Review sensitive files accessed, downloaded, shared externally, or flagged by DLP.</p>
+        </div>
+        <div id="cloudEvidence" class="entity-grid"></div>
+      </section>
+
+      <section id="logsPanel" class="tab-panel" aria-label="Logs">
+        <div class="section-title">
+          <h2>Related Logs</h2>
+          <p>Filter synthetic email, identity, OAuth, Graph API, SharePoint, DLP, and proxy events.</p>
+        </div>
+        <div class="filters">
+          <button class="filter active" data-filter="all">All</button>
+          <button class="filter" data-filter="email">Email</button>
+          <button class="filter" data-filter="identity">Identity</button>
+          <button class="filter" data-filter="oauth">OAuth</button>
+          <button class="filter" data-filter="graph">Graph API</button>
+          <button class="filter" data-filter="sharepoint">SharePoint</button>
+          <button class="filter" data-filter="dlp">DLP</button>
+          <button class="filter" data-filter="proxy">Proxy</button>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Time</th>
+                <th>Source</th>
+                <th>User/App</th>
+                <th>IP</th>
+                <th>Event</th>
+                <th>Detail</th>
+              </tr>
+            </thead>
+            <tbody id="logTable"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <section id="entitiesPanel" class="tab-panel" aria-label="Entities">
+        <div class="section-title">
+          <h2>Entities</h2>
+          <p>Review users, apps, files, and network indicators involved in the alert.</p>
+        </div>
+        <div id="entities" class="entity-grid"></div>
+      </section>
+
+      <section id="detectionsPanel" class="tab-panel" aria-label="Detections">
+        <div class="section-title">
+          <h2>Detection Logic</h2>
+          <p>Understand how suspicious OAuth consent can be correlated with cloud file access and DLP alerts.</p>
+        </div>
+        <div id="detectionDetails" class="detection-details"></div>
+      </section>
+    </section>
+
+    <aside class="analyst-panel" aria-label="Analyst notebook">
+      <div class="panel-heading">
+        <p class="eyebrow">Notebook</p>
+        <h2>Triage Decision</h2>
+      </div>
+
+      <form id="triageForm" class="triage-form">
+        <label>
+          Verdict
+          <select id="verdict" required>
+            <option value="">Choose one</option>
+            <option value="false_positive">False Positive</option>
+            <option value="benign_true_positive">Benign True Positive</option>
+            <option value="suspicious_activity">Suspicious Activity</option>
+            <option value="confirmed_incident">Confirmed Incident</option>
+          </select>
+        </label>
+
+        <label>
+          Severity
+          <select id="severity" required>
+            <option value="">Choose one</option>
+            <option value="low">Low</option>
+            <option value="medium">Medium</option>
+            <option value="high">High</option>
+            <option value="critical">Critical</option>
+          </select>
+        </label>
+
+        <label>
+          Affected User
+          <input id="answerUser" type="text" placeholder="Example: maya.hassan" autocomplete="off">
+        </label>
+
+        <label>
+          Suspicious OAuth App
+          <input id="answerApp" type="text" placeholder="Example: Northstar Document Sync" autocomplete="off">
+        </label>
+
+        <label>
+          High-Risk Scope
+          <input id="answerScope" type="text" placeholder="Example: Files.Read.All" autocomplete="off">
+        </label>
+
+        <label>
+          Exfil Destination
+          <input id="answerDestination" type="text" placeholder="Example: fileshare-sync.example" autocomplete="off">
+        </label>
+
+        <label>
+          Primary MITRE Technique
+          <select id="mitreTechnique" required>
+            <option value="">Choose one</option>
+            <option value="T1528">T1528 - Steal Application Access Token</option>
+            <option value="T1110.003">T1110.003 - Password Spraying</option>
+            <option value="T1136.001">T1136.001 - Local Account</option>
+            <option value="T1059.001">T1059.001 - PowerShell</option>
+          </select>
+        </label>
+
+        <label>
+          Evidence Notes
+          <textarea id="notes" rows="6" placeholder="Write the evidence you would put in a SOC escalation report."></textarea>
+        </label>
+
+        <button type="submit" class="primary-action">Check Triage</button>
+      </form>
+
+      <div id="feedback" class="feedback" aria-live="polite"></div>
+
+      <section class="hint-box">
+        <h3>Analyst Hint</h3>
+        <p>A password reset alone does not remove OAuth app access. Check consent grants, service principals, refresh tokens, app credentials, file access, and external sharing.</p>
+      </section>
+    </aside>
+  </main>
+</body>
+</html>

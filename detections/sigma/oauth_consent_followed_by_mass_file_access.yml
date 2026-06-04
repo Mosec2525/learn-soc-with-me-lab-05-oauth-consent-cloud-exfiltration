@@ -1,0 +1,45 @@
+title: OAuth Consent Followed By Cloud File Access And Sharing
+id: 4dbfb47f-826f-4d20-82f5-2e522219f005
+status: experimental
+description: Detects a behavior chain where a newly consented OAuth app accesses or shares multiple sensitive cloud files.
+author: Learn SOC With Me
+date: 2026/06/03
+references:
+  - https://attack.mitre.org/techniques/T1530/
+  - https://attack.mitre.org/techniques/T1567/002/
+logsource:
+  product: m365
+  service: audit
+detection:
+  consent:
+    EventType: consent_grant
+  file_activity:
+    EventType:
+      - file_downloaded
+      - sharing_link_created
+  sensitive:
+    SensitivityLabel|contains:
+      - Confidential
+      - Board
+      - Finance
+  timeframe: 1h
+  condition: consent followed_by file_activity and sensitive
+fields:
+  - TimeGenerated
+  - UserId
+  - AppDisplayName
+  - AppId
+  - Operation
+  - SourceIPAddress
+  - ObjectId
+  - SensitivityLabel
+falsepositives:
+  - Approved migration tools
+  - Legal discovery workflows
+  - Board portal migrations
+level: critical
+tags:
+  - attack.collection
+  - attack.exfiltration
+  - attack.t1530
+  - attack.t1567.002

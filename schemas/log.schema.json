@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Learn SOC With Me Log Collection",
+  "type": "object",
+  "required": [
+    "events"
+  ],
+  "properties": {
+    "events": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "event_id",
+          "timestamp",
+          "source",
+          "category",
+          "event_type"
+        ],
+        "properties": {
+          "event_id": { "type": "string" },
+          "timestamp": { "type": "string" },
+          "source": { "type": "string" },
+          "category": { "type": "string" },
+          "event_type": { "type": "string" },
+          "timeline": { "type": "boolean" },
+          "description": { "type": "string" }
+        },
+        "additionalProperties": true
+      }
+    }
+  }
+}

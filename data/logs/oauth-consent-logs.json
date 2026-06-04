@@ -1,0 +1,27 @@
+{
+  "events": [
+    {
+      "event_id": "oauth-5401",
+      "timestamp": "2026-06-03T13:24:57Z",
+      "source": "OAuth Consent Logs",
+      "category": "oauth",
+      "event_type": "consent_grant",
+      "user": "maya.hassan",
+      "app_name": "Northstar Document Sync",
+      "app_id": "app-5e21-9c70-docsync",
+      "publisher": "Northstar Productivity Tools",
+      "verified_publisher": false,
+      "scopes": [
+        "User.Read",
+        "Files.Read.All",
+        "Mail.Read",
+        "offline_access"
+      ],
+      "redirect_uri": "https://northstar-docsync.example/oauth/callback",
+      "src_ip": "198.51.100.24",
+      "result": "success",
+      "timeline": true,
+      "description": "User consented to broad app permissions for an unverified application."
+    }
+  ]
+}

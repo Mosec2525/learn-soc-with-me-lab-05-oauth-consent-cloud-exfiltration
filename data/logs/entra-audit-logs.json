@@ -1,0 +1,35 @@
+{
+  "events": [
+    {
+      "event_id": "audit-5301",
+      "timestamp": "2026-06-03T13:25:02Z",
+      "source": "Entra Audit Logs",
+      "category": "oauth",
+      "event_type": "app_role_assignment",
+      "actor_user": "maya.hassan",
+      "app_name": "Northstar Document Sync",
+      "app_id": "app-5e21-9c70-docsync",
+      "resource": "Microsoft Graph",
+      "permission": "Files.Read.All",
+      "result": "success",
+      "src_ip": "198.51.100.24",
+      "timeline": true,
+      "description": "Delegated file read permission was granted to the new OAuth application."
+    },
+    {
+      "event_id": "audit-5302",
+      "timestamp": "2026-06-03T13:41:52Z",
+      "source": "Entra Audit Logs",
+      "category": "oauth",
+      "event_type": "service_principal_credential_added",
+      "actor_user": "Northstar Document Sync",
+      "app_name": "Northstar Document Sync",
+      "app_id": "app-5e21-9c70-docsync",
+      "credential_type": "client_secret",
+      "src_ip": "203.0.113.219",
+      "result": "success",
+      "timeline": true,
+      "description": "A new credential was added to the suspicious service principal after file access."
+    }
+  ]
+}

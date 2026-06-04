@@ -1,0 +1,42 @@
+{
+  "events": [
+    {
+      "event_id": "dlp-5701",
+      "timestamp": "2026-06-03T13:36:10Z",
+      "source": "Microsoft Purview DLP",
+      "category": "dlp",
+      "event_type": "dlp_alert",
+      "user": "maya.hassan",
+      "app_name": "Northstar Document Sync",
+      "src_ip": "203.0.113.219",
+      "policy_name": "Confidential Finance Data External Access",
+      "file_name": "Executive-Compensation-2026.xlsx",
+      "matched_sensitive_info": [
+        "employee compensation",
+        "employee identifiers"
+      ],
+      "severity": "high",
+      "timeline": true,
+      "description": "DLP matched sensitive HR compensation data after app-based download."
+    },
+    {
+      "event_id": "dlp-5702",
+      "timestamp": "2026-06-03T13:36:42Z",
+      "source": "Microsoft Purview DLP",
+      "category": "dlp",
+      "event_type": "dlp_alert",
+      "user": "maya.hassan",
+      "app_name": "Northstar Document Sync",
+      "src_ip": "203.0.113.219",
+      "policy_name": "Board Material External Exposure",
+      "file_name": "Board_MandA_Strategy_Q2.pdf",
+      "matched_sensitive_info": [
+        "M&A codename",
+        "board-only label"
+      ],
+      "severity": "critical",
+      "timeline": false,
+      "description": "DLP matched board-only merger planning content."
+    }
+  ]
+}

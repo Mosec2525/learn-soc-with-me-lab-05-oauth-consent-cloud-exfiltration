@@ -1,0 +1,13 @@
+(
+  event.dataset : ("entra.auditlogs" or "m365.graph" or "m365.sharepoint" or "m365.dlp" or "proxy")
+)
+and
+(
+  event.action : ("Consent to application" or "Add app role assignment grant to user" or "Add service principal credentials")
+  or oauth.scopes : ("Files.Read.All" or "Mail.Read" or "offline_access")
+  or graph.operation : ("GET /me/drive/root/children" or "GET /sites?search=finance" or "GET */content")
+  or m365.operation : ("file_downloaded" or "sharing_link_created")
+  or dlp.policy.name : ("Confidential Finance Data External Access" or "Board Material External Exposure")
+  or url.domain : "fileshare-sync.example"
+)
+and not app.publisher.verified : true

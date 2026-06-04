@@ -1,0 +1,19 @@
+{
+  "case_id": "case-005-oauth-consent-cloud-exfiltration",
+  "title": "OAuth Consent Cloud Exfiltration",
+  "difficulty": "advanced-beginner-to-intermediate",
+  "environment": "Microsoft 365 / Entra ID / SharePoint Online",
+  "primary_skill": "Cloud/SaaS token abuse investigation",
+  "expected_verdict": "confirmed_incident",
+  "expected_severity": "critical",
+  "affected_user": "maya.hassan",
+  "suspicious_app": "Northstar Document Sync",
+  "primary_mitre": "T1528",
+  "learning_goals": [
+    "Investigate OAuth consent phishing",
+    "Correlate app permissions with Graph API activity",
+    "Identify sensitive cloud file access",
+    "Recognize that password reset alone is incomplete containment",
+    "Map cloud/SaaS behavior to MITRE ATT&CK"
+  ]
+}

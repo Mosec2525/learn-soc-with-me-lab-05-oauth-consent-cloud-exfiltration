@@ -1,0 +1,40 @@
+{
+  "events": [
+    {
+      "event_id": "signin-5201",
+      "timestamp": "2026-06-03T13:24:19Z",
+      "source": "Entra Sign-in Logs",
+      "category": "identity",
+      "event_type": "interactive_signin",
+      "user": "maya.hassan",
+      "resource": "Microsoft Office Home",
+      "client_app": "Browser",
+      "device_name": "LAP-FIN-022",
+      "src_ip": "198.51.100.24",
+      "country": "US",
+      "mfa_result": "satisfied",
+      "conditional_access": "success",
+      "risk_level": "low",
+      "timeline": true,
+      "description": "Interactive sign-in succeeded from the user's normal corporate VPN source."
+    },
+    {
+      "event_id": "signin-5202",
+      "timestamp": "2026-06-03T13:27:44Z",
+      "source": "Entra Sign-in Logs",
+      "category": "identity",
+      "event_type": "non_interactive_signin",
+      "user": "maya.hassan",
+      "resource": "Microsoft Graph",
+      "client_app": "Northstar Document Sync",
+      "app_name": "Northstar Document Sync",
+      "src_ip": "203.0.113.219",
+      "country": "NL",
+      "mfa_result": "not_required_for_token_reuse",
+      "conditional_access": "not_applied",
+      "risk_level": "medium",
+      "timeline": true,
+      "description": "Token-based app sign-in from a new cloud hosting source after consent."
+    }
+  ]
+}

@@ -1,0 +1,71 @@
+{
+  "events": [
+    {
+      "event_id": "sp-5601",
+      "timestamp": "2026-06-03T13:31:16Z",
+      "source": "SharePoint Audit",
+      "category": "sharepoint",
+      "event_type": "file_downloaded",
+      "app_name": "Northstar Document Sync",
+      "user": "maya.hassan",
+      "src_ip": "203.0.113.219",
+      "action": "downloaded",
+      "site_name": "Finance Leadership",
+      "file_name": "Board_MandA_Strategy_Q2.pdf",
+      "sensitivity_label": "Confidential - Board",
+      "bytes": 12484211,
+      "timeline": true,
+      "description": "Sensitive board document was downloaded by the suspicious app."
+    },
+    {
+      "event_id": "sp-5602",
+      "timestamp": "2026-06-03T13:32:24Z",
+      "source": "OneDrive Audit",
+      "category": "sharepoint",
+      "event_type": "file_downloaded",
+      "app_name": "Northstar Document Sync",
+      "user": "maya.hassan",
+      "src_ip": "203.0.113.219",
+      "action": "downloaded",
+      "site_name": "Maya Hassan OneDrive",
+      "file_name": "Executive-Compensation-2026.xlsx",
+      "sensitivity_label": "Confidential - HR",
+      "bytes": 5882194,
+      "timeline": false,
+      "description": "Executive compensation workbook was downloaded by the suspicious app."
+    },
+    {
+      "event_id": "sp-5603",
+      "timestamp": "2026-06-03T13:33:08Z",
+      "source": "SharePoint Audit",
+      "category": "sharepoint",
+      "event_type": "file_downloaded",
+      "app_name": "Northstar Document Sync",
+      "user": "maya.hassan",
+      "src_ip": "203.0.113.219",
+      "action": "downloaded",
+      "site_name": "Finance Forecasting",
+      "file_name": "Payroll-Forecast-June.xlsx",
+      "sensitivity_label": "Confidential - Finance",
+      "bytes": 8129940,
+      "timeline": false,
+      "description": "Payroll forecast workbook was downloaded by the suspicious app."
+    },
+    {
+      "event_id": "sp-5604",
+      "timestamp": "2026-06-03T13:34:40Z",
+      "source": "SharePoint Audit",
+      "category": "sharepoint",
+      "event_type": "sharing_link_created",
+      "app_name": "Northstar Document Sync",
+      "user": "maya.hassan",
+      "src_ip": "203.0.113.219",
+      "action": "created sharing link",
+      "site_name": "Finance Leadership",
+      "file_name": "Board_MandA_Strategy_Q2.pdf",
+      "link_scope": "anonymous_external",
+      "timeline": true,
+      "description": "Anonymous external sharing link was created for a board document."
+    }
+  ]
+}

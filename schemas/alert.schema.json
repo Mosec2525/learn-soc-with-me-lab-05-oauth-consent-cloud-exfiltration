@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Learn SOC With Me Alert",
+  "type": "object",
+  "required": [
+    "alert_id",
+    "title",
+    "created_at",
+    "alert_source",
+    "initial_severity",
+    "summary"
+  ],
+  "properties": {
+    "alert_id": { "type": "string" },
+    "title": { "type": "string" },
+    "created_at": { "type": "string" },
+    "alert_source": { "type": "string" },
+    "initial_severity": { "type": "string" },
+    "status": { "type": "string" },
+    "environment": { "type": "string" },
+    "summary": { "type": "string" },
+    "detection_logic": { "type": "string" },
+    "threshold": { "type": "string" },
+    "time_window": { "type": "string" },
+    "false_positive_notes": {
+      "type": "array",
+      "items": { "type": "string" }
+    }
+  }
+}

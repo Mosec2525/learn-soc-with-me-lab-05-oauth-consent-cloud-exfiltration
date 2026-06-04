@@ -1,0 +1,36 @@
+{
+  "events": [
+    {
+      "event_id": "mail-5001",
+      "timestamp": "2026-06-03T13:21:08Z",
+      "source": "Email Security Gateway",
+      "category": "email",
+      "event_type": "inbound_email",
+      "recipient": "maya.hassan",
+      "sender": "board-pack-review@northstar-secure.example",
+      "sender_domain": "northstar-secure.example",
+      "subject": "Action required: Q2 board pack access review",
+      "url": "https://login.northstar-docsync.example/consent/start",
+      "authentication_result": "spf=softfail; dkim=none; dmarc=fail",
+      "verdict": "delivered_with_warning_banner",
+      "timeline": true,
+      "description": "External email uses a board-pack pretext and links to an OAuth consent landing page."
+    },
+    {
+      "event_id": "mail-5002",
+      "timestamp": "2026-06-03T13:21:13Z",
+      "source": "Email Security Gateway",
+      "category": "email",
+      "event_type": "inbound_email",
+      "recipient": "lina.haddad",
+      "sender": "board-pack-review@northstar-secure.example",
+      "sender_domain": "northstar-secure.example",
+      "subject": "Action required: Q2 board pack access review",
+      "url": "https://login.northstar-docsync.example/consent/start",
+      "authentication_result": "spf=softfail; dkim=none; dmarc=fail",
+      "verdict": "delivered_with_warning_banner",
+      "timeline": false,
+      "description": "Same lure delivered to another finance user who did not click."
+    }
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Learn SOC With Me Case Summary",
+  "type": "object",
+  "required": [
+    "case_id",
+    "title",
+    "difficulty",
+    "environment",
+    "primary_skill",
+    "expected_verdict",
+    "expected_severity"
+  ],
+  "properties": {
+    "case_id": { "type": "string" },
+    "title": { "type": "string" },
+    "difficulty": { "type": "string" },
+    "environment": { "type": "string" },
+    "primary_skill": { "type": "string" },
+    "expected_verdict": { "type": "string" },
+    "expected_severity": { "type": "string" },
+    "affected_user": { "type": "string" },
+    "suspicious_app": { "type": "string" },
+    "primary_mitre": { "type": "string" },
+    "learning_goals": {
+      "type": "array",
+      "items": { "type": "string" }
+    }
+  }
+}

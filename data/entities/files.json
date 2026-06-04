@@ -1,0 +1,38 @@
+{
+  "files": [
+    {
+      "file_name": "Board_MandA_Strategy_Q2.pdf",
+      "location": "SharePoint / Finance Leadership / Board Materials",
+      "owner": "maya.hassan",
+      "sensitivity": "Confidential - Board",
+      "data_types": [
+        "M&A planning",
+        "board strategy"
+      ],
+      "lab_signal": "Downloaded by the suspicious app and later shared externally."
+    },
+    {
+      "file_name": "Executive-Compensation-2026.xlsx",
+      "location": "OneDrive / maya.hassan / Compensation",
+      "owner": "maya.hassan",
+      "sensitivity": "Confidential - HR",
+      "data_types": [
+        "executive compensation",
+        "employee identifiers"
+      ],
+      "lab_signal": "Triggered DLP after Graph API download activity."
+    },
+    {
+      "file_name": "Payroll-Forecast-June.xlsx",
+      "location": "SharePoint / Finance Forecasting",
+      "owner": "Finance Forecasting Team",
+      "sensitivity": "Confidential - Finance",
+      "data_types": [
+        "payroll",
+        "banking references",
+        "forecast model"
+      ],
+      "lab_signal": "Included in bulk download and upload volume."
+    }
+  ]
+}

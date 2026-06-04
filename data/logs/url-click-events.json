@@ -1,0 +1,22 @@
+{
+  "events": [
+    {
+      "event_id": "click-5101",
+      "timestamp": "2026-06-03T13:23:43Z",
+      "source": "Safe Links",
+      "category": "email",
+      "event_type": "url_clicked",
+      "user": "maya.hassan",
+      "device_name": "LAP-FIN-022",
+      "src_ip": "198.51.100.24",
+      "url": "https://login.northstar-docsync.example/consent/start",
+      "redirect_chain": [
+        "https://login.northstar-docsync.example/consent/start",
+        "https://login.microsoftonline.example/common/oauth2/v2.0/authorize?client_id=app-5e21-9c70-docsync&scope=Files.Read.All%20Mail.Read%20offline_access"
+      ],
+      "result": "allowed",
+      "timeline": true,
+      "description": "User clicked the OAuth consent phishing link from the email."
+    }
+  ]
+}

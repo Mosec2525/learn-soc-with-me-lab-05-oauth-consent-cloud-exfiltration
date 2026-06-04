@@ -1,0 +1,42 @@
+title: Suspicious OAuth Consent With High Risk Cloud File Scopes
+id: 8a94e7f4-2d58-4aa1-9fd1-0a1f5a05f005
+status: experimental
+description: Detects OAuth consent grants to unverified or newly observed applications requesting broad file, mail, or offline access scopes.
+author: Learn SOC With Me
+date: 2026/06/03
+references:
+  - https://attack.mitre.org/techniques/T1528/
+  - https://attack.mitre.org/techniques/T1566/002/
+logsource:
+  product: azure
+  service: auditlogs
+detection:
+  selection_operation:
+    Operation:
+      - Consent to application
+      - Add app role assignment grant to user
+  selection_scopes:
+    ConsentScopes|contains:
+      - Files.Read.All
+      - Mail.Read
+      - offline_access
+  filter_verified:
+    PublisherVerified: true
+  condition: selection_operation and selection_scopes and not filter_verified
+fields:
+  - TimeGenerated
+  - UserPrincipalName
+  - AppDisplayName
+  - AppId
+  - PublisherName
+  - ConsentScopes
+  - IPAddress
+falsepositives:
+  - Approved enterprise SaaS onboarding
+  - Security engineering tests
+level: high
+tags:
+  - attack.initial_access
+  - attack.credential_access
+  - attack.t1566.002
+  - attack.t1528

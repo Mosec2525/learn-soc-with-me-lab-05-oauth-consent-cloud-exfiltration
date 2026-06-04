@@ -1,0 +1,32 @@
+{
+  "indicators": [
+    {
+      "indicator": "198.51.100.24",
+      "type": "ip",
+      "reputation": "known corporate VPN egress",
+      "country": "US",
+      "note": "Used by maya.hassan during normal interactive sign-in."
+    },
+    {
+      "indicator": "203.0.113.219",
+      "type": "ip",
+      "reputation": "new cloud hosting source",
+      "country": "NL",
+      "note": "Used by Northstar Document Sync for Graph API activity after consent."
+    },
+    {
+      "indicator": "fileshare-sync.example",
+      "type": "domain",
+      "reputation": "new external cloud storage domain",
+      "country": "unknown",
+      "note": "Proxy upload destination after sensitive file downloads."
+    },
+    {
+      "indicator": "northstar-docsync.example",
+      "type": "domain",
+      "reputation": "lookalike OAuth landing domain",
+      "country": "unknown",
+      "note": "Hosted the consent phishing redirect page."
+    }
+  ]
+}

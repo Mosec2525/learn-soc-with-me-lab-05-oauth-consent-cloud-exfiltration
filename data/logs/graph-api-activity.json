@@ -1,0 +1,68 @@
+{
+  "events": [
+    {
+      "event_id": "graph-5501",
+      "timestamp": "2026-06-03T13:28:10Z",
+      "source": "Microsoft Graph Audit",
+      "category": "graph",
+      "event_type": "graph_api_call",
+      "app_name": "Northstar Document Sync",
+      "app_id": "app-5e21-9c70-docsync",
+      "user": "maya.hassan",
+      "src_ip": "203.0.113.219",
+      "api_operation": "GET /me/drive/root/children",
+      "target_resource": "OneDrive root",
+      "result": "success",
+      "timeline": false,
+      "description": "App enumerated the user's OneDrive root folder."
+    },
+    {
+      "event_id": "graph-5502",
+      "timestamp": "2026-06-03T13:29:34Z",
+      "source": "Microsoft Graph Audit",
+      "category": "graph",
+      "event_type": "graph_api_call",
+      "app_name": "Northstar Document Sync",
+      "app_id": "app-5e21-9c70-docsync",
+      "user": "maya.hassan",
+      "src_ip": "203.0.113.219",
+      "api_operation": "GET /sites?search=finance",
+      "target_resource": "SharePoint site search",
+      "result": "success",
+      "timeline": true,
+      "description": "App searched for finance SharePoint sites shortly after consent."
+    },
+    {
+      "event_id": "graph-5503",
+      "timestamp": "2026-06-03T13:31:12Z",
+      "source": "Microsoft Graph Audit",
+      "category": "graph",
+      "event_type": "graph_api_call",
+      "app_name": "Northstar Document Sync",
+      "app_id": "app-5e21-9c70-docsync",
+      "user": "maya.hassan",
+      "src_ip": "203.0.113.219",
+      "api_operation": "GET /sites/finance-leadership/drive/items/board-manda/content",
+      "target_resource": "Board_MandA_Strategy_Q2.pdf",
+      "result": "success",
+      "timeline": true,
+      "description": "App downloaded a confidential board strategy document."
+    },
+    {
+      "event_id": "graph-5504",
+      "timestamp": "2026-06-03T13:32:20Z",
+      "source": "Microsoft Graph Audit",
+      "category": "graph",
+      "event_type": "graph_api_call",
+      "app_name": "Northstar Document Sync",
+      "app_id": "app-5e21-9c70-docsync",
+      "user": "maya.hassan",
+      "src_ip": "203.0.113.219",
+      "api_operation": "GET /me/drive/items/executive-comp/content",
+      "target_resource": "Executive-Compensation-2026.xlsx",
+      "result": "success",
+      "timeline": false,
+      "description": "App downloaded executive compensation data from the user's OneDrive."
+    }
+  ]
+}

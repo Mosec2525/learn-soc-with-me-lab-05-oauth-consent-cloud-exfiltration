@@ -1,0 +1,54 @@
+{
+  "verdict": "confirmed_incident",
+  "severity": "critical",
+  "affected_user": "maya.hassan",
+  "suspicious_app": "Northstar Document Sync",
+  "app_id": "app-5e21-9c70-docsync",
+  "publisher": "Northstar Productivity Tools",
+  "source_ip": "203.0.113.219",
+  "exfil_destination": "fileshare-sync.example",
+  "high_risk_scopes": [
+    "Files.Read.All",
+    "Mail.Read",
+    "offline_access"
+  ],
+  "files_accessed": [
+    "Board_MandA_Strategy_Q2.pdf",
+    "Executive-Compensation-2026.xlsx",
+    "Payroll-Forecast-June.xlsx"
+  ],
+  "primary_mitre": "T1528",
+  "mitre_techniques": [
+    "T1566.002",
+    "T1528",
+    "T1078.004",
+    "T1087.004",
+    "T1530",
+    "T1567.002",
+    "T1098.001"
+  ],
+  "evidence": [
+    "maya.hassan received and clicked a suspicious board-pack themed OAuth consent link from an external domain.",
+    "The app Northstar Document Sync was unverified, newly created, and used a synthetic redirect URI outside the approved application catalog.",
+    "The user granted high-risk delegated scopes including Files.Read.All, Mail.Read, and offline_access.",
+    "A non-interactive sign-in and Graph API activity from 203.0.113.219 occurred after consent without a new password failure or malware event.",
+    "The app enumerated users, SharePoint sites, drives, and file metadata using Graph API calls.",
+    "Sensitive board, executive compensation, and payroll forecast files were accessed and downloaded.",
+    "External anonymous sharing links were created for sensitive files.",
+    "DLP matched merger, compensation, and payroll sensitive information after the file activity.",
+    "Proxy telemetry shows upload activity to fileshare-sync.example.",
+    "A service principal credential was added to the app after the file activity, indicating persistence."
+  ],
+  "recommended_actions": [
+    "Revoke OAuth consent grants for Northstar Document Sync.",
+    "Disable or delete the suspicious service principal and remove newly added credentials.",
+    "Revoke refresh tokens and active sessions for maya.hassan.",
+    "Review and remove external sharing links created during the incident window.",
+    "Confirm whether files were downloaded or exposed externally and notify legal/privacy stakeholders if required.",
+    "Block fileshare-sync.example and related infrastructure at proxy, CASB, and DNS controls.",
+    "Hunt for the same app ID, redirect URI, publisher, source IP, scopes, and destination domain across the tenant.",
+    "Audit all recent OAuth consent grants with high-risk scopes.",
+    "Restrict user consent to verified or admin-approved applications.",
+    "Escalate to incident response because sensitive business data and persistence are involved."
+  ]
+}

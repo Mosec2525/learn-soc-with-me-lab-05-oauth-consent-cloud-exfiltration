@@ -1,0 +1,25 @@
+`comment("OAuth consent followed by Graph API, SharePoint file access, DLP, and external upload signals")`
+index=m365 earliest=-24h
+(
+  sourcetype="entra:audit" Operation IN ("Consent to application","Add app role assignment grant to user","Add service principal credentials")
+  OR sourcetype="m365:graph" api_operation IN ("GET /me/drive/root/children","GET /sites?search=finance","GET */content")
+  OR sourcetype="m365:sharepoint" event_type IN ("file_downloaded","sharing_link_created")
+  OR sourcetype="m365:dlp" event_type="dlp_alert"
+  OR sourcetype="proxy" event_type="proxy_upload"
+)
+| eval actor=coalesce(user, actor_user, app_name), app=coalesce(app_name, AppDisplayName), src=coalesce(src_ip, IPAddress)
+| stats
+    values(event_type) as event_types
+    values(Operation) as operations
+    values(api_operation) as api_operations
+    values(file_name) as files
+    values(scopes) as scopes
+    values(domain) as destinations
+    values(src) as source_ips
+    sum(bytes_out) as bytes_out
+    earliest(_time) as first_seen
+    latest(_time) as last_seen
+  by actor app
+| where mvfind(scopes, "Files.Read.All") >= 0 OR mvfind(scopes, "Mail.Read") >= 0 OR mvfind(scopes, "offline_access") >= 0 OR mvfind(event_types, "dlp_alert") >= 0
+| where mvfind(event_types, "file_downloaded") >= 0 OR mvfind(event_types, "sharing_link_created") >= 0 OR bytes_out > 10000000
+| convert ctime(first_seen) ctime(last_seen)

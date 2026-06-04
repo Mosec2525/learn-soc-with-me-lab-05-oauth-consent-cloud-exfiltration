@@ -1,0 +1,31 @@
+{
+  "apps": [
+    {
+      "app_name": "Northstar Document Sync",
+      "app_id": "app-5e21-9c70-docsync",
+      "publisher": "Northstar Productivity Tools",
+      "verified_publisher": false,
+      "created_at": "2026-06-03T12:58:12Z",
+      "redirect_uri": "https://northstar-docsync.example/oauth/callback",
+      "requested_scopes": [
+        "User.Read",
+        "Files.Read.All",
+        "Mail.Read",
+        "offline_access"
+      ],
+      "risk_note": "Unverified app with broad file and mail access, created shortly before the phishing email."
+    },
+    {
+      "app_name": "ExpenseFlow SSO",
+      "app_id": "app-1220-expenseflow",
+      "publisher": "ExpenseFlow Inc.",
+      "verified_publisher": true,
+      "created_at": "2025-11-18T09:42:10Z",
+      "redirect_uri": "https://sso.expenseflow.example/auth/callback",
+      "requested_scopes": [
+        "User.Read"
+      ],
+      "risk_note": "Known approved finance SaaS app with limited user profile scope."
+    }
+  ]
+}

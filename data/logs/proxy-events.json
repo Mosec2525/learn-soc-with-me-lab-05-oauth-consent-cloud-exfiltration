@@ -1,0 +1,22 @@
+{
+  "events": [
+    {
+      "event_id": "proxy-5801",
+      "timestamp": "2026-06-03T13:38:51Z",
+      "source": "Secure Web Gateway",
+      "category": "proxy",
+      "event_type": "proxy_upload",
+      "user": "maya.hassan",
+      "app_name": "Northstar Document Sync",
+      "src_ip": "203.0.113.219",
+      "domain": "fileshare-sync.example",
+      "destination_ip": "203.0.113.220",
+      "method": "POST",
+      "bytes_out": 26211834,
+      "bytes_in": 12482,
+      "verdict": "allowed",
+      "timeline": true,
+      "description": "Large outbound upload to external cloud storage domain after sensitive file downloads."
+    }
+  ]
+}

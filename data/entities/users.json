@@ -1,0 +1,28 @@
+{
+  "users": [
+    {
+      "username": "maya.hassan",
+      "display_name": "Maya Hassan",
+      "department": "Finance",
+      "role": "Finance Director",
+      "mfa_status": "enabled",
+      "risk_note": "High-value user with access to board materials, payroll forecasts, and acquisition planning documents."
+    },
+    {
+      "username": "victor.chen",
+      "display_name": "Victor Chen",
+      "department": "IT",
+      "role": "Cloud Applications Administrator",
+      "mfa_status": "enabled",
+      "risk_note": "Approves normal enterprise app integrations but did not approve Northstar Document Sync."
+    },
+    {
+      "username": "lina.haddad",
+      "display_name": "Lina Haddad",
+      "department": "Accounting",
+      "role": "Senior Accountant",
+      "mfa_status": "enabled",
+      "risk_note": "Received the same phishing email but did not click the OAuth consent link."
+    }
+  ]
+}
